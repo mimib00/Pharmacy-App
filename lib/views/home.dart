@@ -12,18 +12,8 @@ class HomePage extends StatelessWidget {
       body: Container(
         height: size.height,
         width: size.width,
-        child: Stack(
-          children: [
-            //Background
-            ClipPath(
-              clipper: BackgroundClipper(),
-              child: Container(
-                height: size.height * 0.75,
-                decoration: BoxDecoration(color: kPrimaryColor),
-              ),
-            )
-            //Rest
-          ],
+        child: CustomPaint(
+          painter: BackgroundPaint(),
         ),
       ),
     );
