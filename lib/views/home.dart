@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/widgets/backgroundClipper.dart';
 import 'package:pharmacy_app/widgets/drawer.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,24 +32,29 @@ class HomePage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 100),
-              Container(
-                width: size.width,
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                height: 50,
-                decoration: BoxDecoration(color: mainTeal, borderRadius: BorderRadius.circular(45)),
-                child: Row(
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.search,
-                      color: Colors.white70,
-                    ),
-                    SizedBox(width: 15),
-                    Text(
-                      'Search For Medcine',
-                      style: TextStyle(color: Colors.white70, fontSize: 20, wordSpacing: 2, letterSpacing: 1.5),
-                    ),
-                  ],
+              GestureDetector(
+                onTap: () {
+                  context.read<AppData>().changePage(1);
+                },
+                child: Container(
+                  width: size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  height: 50,
+                  decoration: BoxDecoration(color: mainTeal, borderRadius: BorderRadius.circular(45)),
+                  child: Row(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.search,
+                        color: Colors.white70,
+                      ),
+                      SizedBox(width: 15),
+                      Text(
+                        'Search For Medcine',
+                        style: TextStyle(color: Colors.white70, fontSize: 20, wordSpacing: 2, letterSpacing: 1.5),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
