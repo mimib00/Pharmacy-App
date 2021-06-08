@@ -13,14 +13,29 @@ class AppData with ChangeNotifier {
       title: 'Doliprane©Paracetamol 1000mg',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.',
       imageUrl: 'assets/images/doliprane.png',
+      price: 125,
     ),
     CarteMedcineTile(
       title: 'Doliprane©Paracetamol 500mg',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.',
       imageUrl: 'assets/images/doliprane.png',
+      inStock: false,
+      isFavorite: true,
+      price: 100,
+    ),
+    CarteMedcineTile(
+      title: 'Doliprane©Paracetamol 1500mg',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.',
+      imageUrl: 'assets/images/doliprane.png',
+      inStock: true,
+      isFavorite: true,
+      price: 155,
     ),
   ];
   List get carte => _carte;
+
+  double _totalPrice = 0;
+  double get totalPrice => _totalPrice;
 
   void changePage(int index) {
     _pageIndex = index;
@@ -32,7 +47,10 @@ class AppData with ChangeNotifier {
     notifyListeners();
   }
 
-  void printQty(int index) {
-    print(_carte[index].qty);
+  void getTotalPrice() {
+    _carte.forEach((element) {
+      _totalPrice += element.price;
+    });
+    notifyListeners();
   }
 }

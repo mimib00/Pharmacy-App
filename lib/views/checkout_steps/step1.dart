@@ -10,6 +10,12 @@ class CarteStep extends StatefulWidget {
 
 class _CarteStepState extends State<CarteStep> {
   @override
+  void initState() {
+    super.initState();
+    context.read<AppData>().getTotalPrice();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
@@ -25,8 +31,37 @@ class _CarteStepState extends State<CarteStep> {
             thickness: 1,
           ),
           SizedBox(height: 10),
-          context.read<AppData>().carte[0],
-          context.read<AppData>().carte[1],
+          Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: context.read<AppData>().carte.length,
+                    itemBuilder: (context, index) {
+                      return context.read<AppData>().carte[index];
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Total',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        context.read<AppData>().totalPrice.toString(),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
