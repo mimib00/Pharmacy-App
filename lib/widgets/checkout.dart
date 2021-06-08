@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/utils/color.dart';
+import 'package:pharmacy_app/views/checkout_steps/step1.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -11,11 +12,7 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
   List<Widget> pages = [
-    Container(
-      child: Center(
-        child: Text('Step1'),
-      ),
-    ),
+    CarteStep(),
     Container(
       child: Center(
         child: Text('Step2'),
@@ -31,6 +28,7 @@ class _CheckoutState extends State<Checkout> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //Indicator
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           height: 100,
@@ -66,6 +64,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
           ),
         ),
+        pages[context.watch<AppData>().checkoutStep]
       ],
     );
   }

@@ -23,7 +23,7 @@ class ShoppingCarte extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.read<AppData>().changeCheckoutStep(1);
+          context.read<AppData>().printQty(1);
         },
       ),
     );
