@@ -12,22 +12,26 @@ class ShoppingCarte extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawer(),
-      body: Column(
-        children: [
-          AppBar(
-            backgroundColor: kPrimaryColor,
-            elevation: 0,
-          ),
-          Checkout()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            AppBar(
+              backgroundColor: kPrimaryColor,
+              elevation: 0,
+            ),
+            Checkout()
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_forward),
-        backgroundColor: kPrimaryColor,
-        onPressed: () {
-          context.read<AppData>().changeCheckoutStep();
-        },
-      ),
+      floatingActionButton: context.watch<AppData>().checkoutStep != 1
+          ? FloatingActionButton(
+              child: Icon(Icons.arrow_forward),
+              backgroundColor: kPrimaryColor,
+              onPressed: () {
+                context.read<AppData>().changeCheckoutStep();
+              },
+            )
+          : null,
     );
   }
 }
