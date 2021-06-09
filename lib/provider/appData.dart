@@ -42,8 +42,17 @@ class AppData with ChangeNotifier {
     notifyListeners();
   }
 
-  void changeCheckoutStep(int index) {
-    _checkoutStep = index;
+  void changeCheckoutStep([int index = -1]) {
+    print(index);
+    if (_checkoutStep >= 3) {
+      return;
+    }
+    if (index >= 0) {
+      _checkoutStep = index;
+      notifyListeners();
+      return;
+    }
+    _checkoutStep += 1;
     notifyListeners();
   }
 
@@ -51,6 +60,5 @@ class AppData with ChangeNotifier {
     _carte.forEach((element) {
       _totalPrice += element.price;
     });
-    notifyListeners();
   }
 }

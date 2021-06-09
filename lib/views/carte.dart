@@ -21,12 +21,13 @@ class ShoppingCarte extends StatelessWidget {
           Checkout()
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     context.read<AppData>().getTotalPrice();
-      //     print(context.read<AppData>().totalPrice);
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_forward),
+        backgroundColor: kPrimaryColor,
+        onPressed: () {
+          context.read<AppData>().changeCheckoutStep();
+        },
+      ),
     );
   }
 }

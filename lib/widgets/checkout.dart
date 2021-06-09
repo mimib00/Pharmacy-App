@@ -23,6 +23,11 @@ class _CheckoutState extends State<Checkout> {
         child: Text('Step3'),
       ),
     ),
+    Container(
+      child: Center(
+        child: Text('Step4'),
+      ),
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,7 @@ class _CheckoutState extends State<Checkout> {
           height: 100,
           color: kPrimaryColor,
           child: StepProgressIndicator(
+            onTap: (index) => () => context.read<AppData>().changeCheckoutStep(index),
             totalSteps: 4,
             currentStep: context.watch<AppData>().checkoutStep + 1,
             size: 50,
