@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pharmacy_app/widgets/carte_medcine_tile.dart';
+import 'package:pharmacy_app/widgets/cart_medcine_tile.dart';
 
 class AppData with ChangeNotifier {
   int _registerIndex = 0;
@@ -20,7 +20,7 @@ class AppData with ChangeNotifier {
   void addToCart(Map<String, dynamic> productData) {
     print(productData['title']);
     _carte.add(
-      CarteMedcineTile(
+      CartMedcineTile(
         title: productData['title'],
         description: productData['description'],
         inStock: productData['inStock'],
@@ -57,9 +57,11 @@ class AppData with ChangeNotifier {
     notifyListeners();
   }
 
+  // void updateTotalPrice() {}
+
   void getTotalPrice() {
     _carte.forEach((element) {
-      _totalPrice += element.price;
+      _totalPrice = element.price * element.qty;
     });
   }
 }

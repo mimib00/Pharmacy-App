@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/utils/color.dart';
 
 // ignore: must_be_immutable
-class CarteMedcineTile extends StatefulWidget {
+class CartMedcineTile extends StatefulWidget {
   final String? title;
   final String? imageUrl;
   final String? description;
@@ -13,7 +13,7 @@ class CarteMedcineTile extends StatefulWidget {
   bool isFavorite;
   int qty;
 
-  CarteMedcineTile({
+  CartMedcineTile({
     this.type,
     this.title,
     this.imageUrl,
@@ -25,10 +25,10 @@ class CarteMedcineTile extends StatefulWidget {
   });
 
   @override
-  _CarteMedcineTileState createState() => _CarteMedcineTileState();
+  _CartMedcineTileState createState() => _CartMedcineTileState();
 }
 
-class _CarteMedcineTileState extends State<CarteMedcineTile> {
+class _CartMedcineTileState extends State<CartMedcineTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
