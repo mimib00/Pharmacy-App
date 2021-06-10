@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_app/utils/color.dart';
 
 class CustomButton3 extends StatelessWidget {
   final String? title;

@@ -1,14 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pharmacy_app/provider/appData.dart';
+import 'package:pharmacy_app/provider/orderData.dart';
+import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/root.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AppData()),
+        ChangeNotifierProvider(create: (_) => OrderData()),
+        ChangeNotifierProvider(create: (_) => StoreData()),
       ],
       child: MyApp(),
     ),
@@ -23,7 +30,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'Sara\'s PFE',
+      title: 'S-Pharmacy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

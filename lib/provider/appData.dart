@@ -2,40 +2,42 @@ import 'package:flutter/cupertino.dart';
 import 'package:pharmacy_app/widgets/carte_medcine_tile.dart';
 
 class AppData with ChangeNotifier {
+  int _registerIndex = 0;
+  int get registerIndex => _registerIndex;
+
   int _pageIndex = 0;
   int get pageIndex => _pageIndex;
 
   int _checkoutStep = 0;
   int get checkoutStep => _checkoutStep;
 
-  List _carte = [
-    CarteMedcineTile(
-      title: 'Doliprane©Paracetamol 1000mg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.',
-      imageUrl: 'assets/images/doliprane.png',
-      price: 125,
-    ),
-    CarteMedcineTile(
-      title: 'Doliprane©Paracetamol 500mg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.',
-      imageUrl: 'assets/images/doliprane.png',
-      inStock: false,
-      isFavorite: true,
-      price: 100,
-    ),
-    CarteMedcineTile(
-      title: 'Doliprane©Paracetamol 1500mg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis condimentum ultrices. Phasellus iaculis fermentum.',
-      imageUrl: 'assets/images/doliprane.png',
-      inStock: true,
-      isFavorite: true,
-      price: 155,
-    ),
-  ];
+  List _carte = [];
   List get carte => _carte;
 
   double _totalPrice = 0;
   double get totalPrice => _totalPrice;
+
+  void addToCart(Map<String, dynamic> productData) {
+    print(productData['title']);
+    _carte.add(
+      CarteMedcineTile(
+        title: productData['title'],
+        description: productData['description'],
+        inStock: productData['inStock'],
+        imageUrl: productData['imageUrl'],
+        price: productData['price'],
+      ),
+    );
+  }
+
+  void nextRegisterPage() {
+    _registerIndex = 1;
+    notifyListeners();
+  }
+
+  void restIndex() {
+    _registerIndex = 0;
+  }
 
   void changePage(int index) {
     _pageIndex = index;
@@ -43,7 +45,6 @@ class AppData with ChangeNotifier {
   }
 
   void changeCheckoutStep([int index = -1]) {
-    print(index);
     if (_checkoutStep >= 3) {
       return;
     }

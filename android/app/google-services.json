@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "648057300676",
+    "project_id": "fir-pharmacy-63969",
+    "storage_bucket": "fir-pharmacy-63969.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648057300676:android:f2097933758b2752f1cb91",
+        "android_client_info": {
+          "package_name": "com.store.pharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648057300676-6smf9se66vu68jfbi2fibg2koeptbva2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGx3k4IrbE3rbWqXRVizuQNszF_4WyqvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648057300676-6smf9se66vu68jfbi2fibg2koeptbva2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

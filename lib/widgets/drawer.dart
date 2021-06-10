@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
+import 'package:provider/provider.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavigationDrawer extends StatefulWidget {
+  @override
+  _NavigationDrawerState createState() => _NavigationDrawerState();
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,24 +33,32 @@ class NavigationDrawer extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.clipboardList,
-                      size: 35,
-                      color: mainTeal,
+              GestureDetector(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ExpansionTile(
+                    expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+                    expandedAlignment: Alignment.centerLeft,
+                    children: Provider.of<StoreData>(context).categories,
+                    title: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.clipboardList,
+                          size: 35,
+                          color: mainTeal,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Categories",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 10),
-                    Text(
-                      "Categories",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               Padding(
@@ -53,8 +68,9 @@ class NavigationDrawer extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              ExpansionTile(
-                title: Row(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(

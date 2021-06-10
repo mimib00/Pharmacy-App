@@ -46,7 +46,7 @@ class _CarteMedcineTileState extends State<CarteMedcineTile> {
             children: [
               Container(
                 width: 150,
-                child: Image.asset(
+                child: Image.network(
                   widget.imageUrl!,
                   fit: BoxFit.fill,
                 ),

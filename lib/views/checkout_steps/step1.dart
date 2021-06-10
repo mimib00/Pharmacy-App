@@ -48,10 +48,9 @@ class _CarteStepState extends State<CarteStep> {
                   child: Row(
                     children: [
                       Text(
-                        'Total',
+                        'Total: ',
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Spacer(),
                       Text(
                         context.read<AppData>().totalPrice.toString(),
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

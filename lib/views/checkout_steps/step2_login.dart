@@ -3,8 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/checkout_steps/step2_register.dart';
 import 'package:pharmacy_app/widgets/backgroundClipper.dart';
-import 'package:pharmacy_app/widgets/custom_button_1.dart';
-import 'package:pharmacy_app/widgets/custom_button_2.dart';
 import 'package:pharmacy_app/widgets/custom_button_3.dart';
 
 class AuthenticationStep extends StatefulWidget {
