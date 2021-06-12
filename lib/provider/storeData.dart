@@ -35,18 +35,19 @@ class StoreData with ChangeNotifier {
     _categoryProducts.clear();
     var snap = await FirebaseFirestore.instance.collection("Products").where("category", isEqualTo: categoryName).get();
 
-    snap.docs.forEach((element) {
+    snap.docs.forEach((doc) {
+      print(doc.data()['name']);
       _categoryProducts.add(
         ProductTile(
-          title: "${element.data()['name']} ${element.data()['dose']}",
-          imageUrl: element.data()['imageUrl'],
-          description: element.data()['description'],
-          price: double.parse(element.data()['price'].toString()),
-          inStock: element.data()['inStock'],
+          title: doc.data()['name'],
+          imageUrl: doc.data()['imageUrl'],
+          description: doc.data()['description'],
+          price: double.parse(doc.data()['price'].toString()),
+          inStock: doc.data()['inStock'],
         ),
       );
     });
+
     notifyListeners();
-    print(snap.docs.first.data());
   }
 }
