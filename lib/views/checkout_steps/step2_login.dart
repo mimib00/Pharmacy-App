@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/checkout_steps/step2_register.dart';
 import 'package:pharmacy_app/widgets/backgroundClipper.dart';
 import 'package:pharmacy_app/widgets/custom_button_3.dart';
+import 'package:provider/provider.dart';
 
 class AuthenticationStep extends StatefulWidget {
   @override
@@ -12,6 +15,18 @@ class AuthenticationStep extends StatefulWidget {
 
 class _AuthenticationStepState extends State<AuthenticationStep> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
+  void loginClient() async {
+    UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email.text, password: _password.text);
+
+    if (user.user != null) Provider.of<OrderData>(context, listen: false).setUser(user.user!);
+
+    print("USER: ${Provider.of<OrderData>(context, listen: false).user!.uid}");
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -43,6 +58,8 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _email,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                         focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -53,9 +70,12 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
                         hintText: "Email",
                         hintStyle: TextStyle(color: Colors.white),
                       ),
+                      keyboardType: TextInputType.emailAddress,
                     ),
                     TextFormField(
+                      controller: _password,
                       obscureText: true,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                         focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -66,6 +86,7 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
                         hintText: "Password",
                         hintStyle: TextStyle(color: Colors.white),
                       ),
+                      keyboardType: TextInputType.visiblePassword,
                     ),
                   ],
                 ),
@@ -94,7 +115,7 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
               ),
             ),
             CustomButton3(
-              onTap: () {},
+              onTap: loginClient,
               title: 'LOGIN',
             ),
             Expanded(
