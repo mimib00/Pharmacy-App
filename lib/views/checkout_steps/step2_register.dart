@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:pharmacy_app/provider/appData.dart';
+import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/widgets/custom_button_3.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +55,29 @@ class _FirstPageState extends State<FirstPage> {
     "Men",
     "Woman"
   ];
+
+  TextEditingController _firstName = TextEditingController();
+  TextEditingController _lastName = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _phone = TextEditingController();
+  TextEditingController _confirmPassword = TextEditingController();
+
+  void nextPage() {
+    if (_password.text == _confirmPassword.text) {
+      Map<String, dynamic> data = {
+        "first_name": _firstName.text,
+        "last_name": _lastName.text,
+        "email": _email.text,
+        "phone": _phone.text,
+        "password": _password.text,
+        "gender": _verticalGroupValue,
+      };
+
+      Provider.of<OrderData>(context, listen: false).setUserData(data);
+      context.read<AppData>().nextRegisterPage();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +131,7 @@ class _FirstPageState extends State<FirstPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: _firstName,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -118,6 +144,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _lastName,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -130,6 +157,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _email,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -142,6 +170,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _phone,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -154,6 +183,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _password,
                     obscureText: true,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -167,6 +197,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _confirmPassword,
                     obscureText: true,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -187,9 +218,7 @@ class _FirstPageState extends State<FirstPage> {
             padding: const EdgeInsets.only(top: 50),
             child: CustomButton3(
               title: "Next",
-              onTap: () {
-                context.read<AppData>().nextRegisterPage();
-              },
+              onTap: nextPage,
             ),
           ),
         ],
@@ -211,10 +240,30 @@ class _SecondPageState extends State<SecondPage> {
 
   bool checkboxValue = false;
 
+  TextEditingController _wilaya = TextEditingController();
+  TextEditingController _address = TextEditingController();
+
   List<String> _status = [
     "Yes",
     "No"
   ];
+
+  void collectDataAndRegister() async {
+    if (checkboxValue) {
+      Map<String, dynamic> data = {
+        "wilaya": _wilaya.text,
+        "address": _address.text,
+        "alergy": _verticalGroup1Value,
+        "medication": _verticalGroup2Value,
+      };
+      Provider.of<OrderData>(context, listen: false).setUserData(data);
+      var status = await Provider.of<OrderData>(context, listen: false).registerUser(context);
+      if (status) {
+        Navigator.pop(context);
+        Provider.of<AppData>(context).changeCheckoutStep();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -244,6 +293,7 @@ class _SecondPageState extends State<SecondPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: _wilaya,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -256,6 +306,7 @@ class _SecondPageState extends State<SecondPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _address,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3)),
@@ -346,16 +397,7 @@ class _SecondPageState extends State<SecondPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50),
-            child: CustomButton3(
-              title: "Register",
-              onTap: () {
-                print({
-                  "verticalGroup1Value": _verticalGroup1Value,
-                  "verticalGroup2Value": _verticalGroup2Value,
-                  "checkBox": checkboxValue
-                });
-              },
-            ),
+            child: CustomButton3(title: "Register", onTap: collectDataAndRegister),
           ),
         ],
       ),

@@ -20,9 +20,9 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
   TextEditingController _password = TextEditingController();
 
   void loginClient() async {
-    UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email.text, password: _password.text);
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email.text, password: _password.text);
 
-    if (user.user != null) Provider.of<OrderData>(context, listen: false).setUser(user.user!);
+    if (userCredential.user != null) Provider.of<OrderData>(context, listen: false).setUser(userCredential.user!);
 
     print("USER: ${Provider.of<OrderData>(context, listen: false).user!.uid}");
   }
