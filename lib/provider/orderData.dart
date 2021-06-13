@@ -15,8 +15,8 @@ class OrderData with ChangeNotifier {
   String _gender = '';
   String _wilaya = '';
   String _address = '';
-  String _alergy = '';
-  String _medication = '';
+  bool _alergy = false;
+  bool _medication = false;
 
   void setUser(User user) {
     _user = user;
@@ -33,8 +33,16 @@ class OrderData with ChangeNotifier {
     _gender = userData["gender"] != null ? userData["gender"] : _gender;
     _wilaya = userData["wilaya"] != null ? userData["wilaya"] : _wilaya;
     _address = userData["address"] != null ? userData["address"] : _address;
-    _alergy = userData["alergy"] != null ? userData["alergy"] : _alergy;
-    _medication = userData["medication"] != null ? userData["medication"] : _medication;
+    _alergy = userData["alergy"] != null
+        ? userData["alergy"] == "Yes"
+            ? true
+            : false
+        : _alergy;
+    _medication = userData["medication"] != null
+        ? userData["medication"] == "Yes"
+            ? true
+            : false
+        : _medication;
   }
 
   // add user data to firebase
@@ -44,7 +52,6 @@ class OrderData with ChangeNotifier {
       "last_name": _lastName,
       "email": _email,
       "phone": _phone,
-      "password": _password,
       "gender": _gender,
       "wilaya": _wilaya,
       "address": _address,
@@ -53,13 +60,12 @@ class OrderData with ChangeNotifier {
     });
     UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
     if (userCredential.user != null) {
-      Provider.of<OrderData>(context, listen: false).setUser(userCredential.user!);
+      setUser(userCredential.user!);
       await FirebaseFirestore.instance.collection('Users').doc(userCredential.user!.uid).set({
         "first_name": _firstName,
         "last_name": _lastName,
         "email": _email,
         "phone": _phone,
-        "password": _password,
         "gender": _gender,
         "wilaya": _wilaya,
         "address": _address,
@@ -69,5 +75,12 @@ class OrderData with ChangeNotifier {
       return true;
     }
     return false;
+  }
+
+  //fetch user checkout data
+  void fetchUserData() async {
+    var snap = await FirebaseFirestore.instance.collection('Users').doc(user!.uid).get();
+
+    print(snap.data());
   }
 }

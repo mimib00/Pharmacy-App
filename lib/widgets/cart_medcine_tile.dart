@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/utils/color.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class CartMedcineTile extends StatefulWidget {
@@ -117,6 +119,8 @@ class _CartMedcineTileState extends State<CartMedcineTile> {
                         setState(() {
                           widget.qty -= 1;
                         });
+
+                        context.read<AppData>().updateTotalPrice();
                       },
                       child: Container(
                         width: 25,
@@ -138,6 +142,7 @@ class _CartMedcineTileState extends State<CartMedcineTile> {
                         setState(() {
                           widget.qty += 1;
                         });
+                        context.read<AppData>().updateTotalPrice();
                       },
                       child: Container(
                         width: 25,

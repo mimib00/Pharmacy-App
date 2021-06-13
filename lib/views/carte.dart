@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/utils/color.dart';
@@ -23,15 +24,35 @@ class ShoppingCarte extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: context.watch<AppData>().checkoutStep != 1
-          ? FloatingActionButton(
+      floatingActionButton: FirebaseAuth.instance.currentUser != null
+          ? context.watch<AppData>().checkoutStep != 1
+              ? FloatingActionButton(
+                  child: Icon(Icons.arrow_forward),
+                  backgroundColor: kPrimaryColor,
+                  onPressed: () {
+                    context.read<AppData>().changeCheckoutStep();
+                  },
+                )
+              : null
+          : FloatingActionButton(
               child: Icon(Icons.arrow_forward),
               backgroundColor: kPrimaryColor,
               onPressed: () {
                 context.read<AppData>().changeCheckoutStep();
               },
-            )
-          : null,
+            ),
     );
   }
 }
+
+/*FirebaseAuth.instance.currentUser != null
+      ? [
+          CarteStep(),
+          DeliveryStep(),
+          Container(
+            child: Center(
+              child: Text('Step4'),
+            ),
+          ),
+        ]
+      : */

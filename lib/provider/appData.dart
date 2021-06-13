@@ -57,7 +57,15 @@ class AppData with ChangeNotifier {
     notifyListeners();
   }
 
-  // void updateTotalPrice() {}
+  void updateTotalPrice() {
+    double itemPrice = 0;
+    _carte.forEach((element) {
+      itemPrice += element.price * element.qty;
+      print("PRICE: $itemPrice");
+    });
+    _totalPrice = itemPrice;
+    notifyListeners();
+  }
 
   void getTotalPrice() {
     double itemPrice = 0;
