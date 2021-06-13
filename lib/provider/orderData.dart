@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:pharmacy_app/models/user_data.dart';
 
 class OrderData with ChangeNotifier {
   User? _user;
   User? get user => _user;
+
+  UserData? _userData;
+  UserData? get userData => _userData;
 
   String _firstName = '';
   String _lastName = '';
@@ -18,12 +21,20 @@ class OrderData with ChangeNotifier {
   bool _alergy = false;
   bool _medication = false;
 
-  void setUser(User user) {
-    _user = user;
-    notifyListeners();
+  // get user data after starting app if already logged in
+  void getUserData() async {
+    if (_user != null) {
+      var snap = await FirebaseFirestore.instance.collection('Users').doc(_user!.uid).get();
+
+      _userData = UserData.fromMap(snap.data()!);
+    }
   }
 
-  //hold data temperary
+  void setUser(User user) {
+    _user = user;
+  }
+
+  // hold data temperary
   void setUserData(Map<String, dynamic> userData) {
     _firstName = userData["first_name"] != null ? userData["first_name"] : _firstName;
     _lastName = userData["last_name"] != null ? userData["last_name"] : _lastName;
@@ -77,10 +88,13 @@ class OrderData with ChangeNotifier {
     return false;
   }
 
-  //fetch user checkout data
+  // fetch user checkout data
   void fetchUserData() async {
     var snap = await FirebaseFirestore.instance.collection('Users').doc(user!.uid).get();
 
     print(snap.data());
   }
+
+  // make order
+  void makeOrder() {}
 }

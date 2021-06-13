@@ -5,6 +5,7 @@ import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/checkout_steps/step1.dart';
 import 'package:pharmacy_app/views/checkout_steps/step2_login.dart';
 import 'package:pharmacy_app/views/checkout_steps/step3.dart';
+import 'package:pharmacy_app/views/checkout_steps/step4.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -18,21 +19,13 @@ class _CheckoutState extends State<Checkout> {
       ? [
           CarteStep(),
           DeliveryStep(),
-          Container(
-            child: Center(
-              child: Text('Step4'),
-            ),
-          ),
+          OrderStep(),
         ]
       : [
           CarteStep(),
           AuthenticationStep(),
           DeliveryStep(),
-          Container(
-            child: Center(
-              child: Text('Step4'),
-            ),
-          ),
+          OrderStep(),
         ];
   @override
   Widget build(BuildContext context) {

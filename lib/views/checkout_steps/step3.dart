@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:pharmacy_app/provider/appData.dart';
+import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/widgets/custom_button_2.dart';
 import 'package:pharmacy_app/widgets/custom_button_3.dart';
@@ -40,28 +41,28 @@ class _DeliveryStepState extends State<DeliveryStep> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
             child: Text(
-              'Malkia Mohamed',
+              "${Provider.of<OrderData>(context).userData!.firstName} ${Provider.of<OrderData>(context).userData!.lastName}",
               style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Hai annacer',
+              "${Provider.of<OrderData>(context).userData!.address}",
               style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Ouargla',
+              "${Provider.of<OrderData>(context).userData!.wilaya}",
               style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              '+213779291985',
+              "${Provider.of<OrderData>(context).userData!.phone}",
               style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ),
@@ -127,7 +128,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Delivery fee',
+                  'Total',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
