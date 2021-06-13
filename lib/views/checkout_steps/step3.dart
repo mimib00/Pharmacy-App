@@ -4,7 +4,6 @@ import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/widgets/custom_button_2.dart';
-import 'package:pharmacy_app/widgets/custom_button_3.dart';
 import 'package:provider/provider.dart';
 
 class DeliveryStep extends StatefulWidget {
@@ -13,10 +12,10 @@ class DeliveryStep extends StatefulWidget {
 }
 
 class _DeliveryStepState extends State<DeliveryStep> {
-  String _delivery = "Standard";
+  String _delivery = "Standard delivery";
 
   List<String> _deliveryTypes = [
-    "Standard delivery: 500 DA",
+    "Standard delivery",
     "Home delivery",
     "Deliver to another address"
   ];
@@ -142,6 +141,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
             padding: const EdgeInsets.symmetric(horizontal: 80),
             child: CustomButton2(
               onTap: () {
+                Provider.of<OrderData>(context, listen: false).saveOrderData(context, _delivery);
                 context.read<AppData>().changeCheckoutStep();
               },
               title: 'Go to payment',

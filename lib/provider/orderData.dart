@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_app/models/user_data.dart';
+import 'package:pharmacy_app/provider/appData.dart';
+import 'package:provider/provider.dart';
 
 class OrderData with ChangeNotifier {
   User? _user;
@@ -20,6 +22,8 @@ class OrderData with ChangeNotifier {
   String _address = '';
   bool _alergy = false;
   bool _medication = false;
+
+  Map<String, dynamic> orderData = {};
 
   // get user data after starting app if already logged in
   void getUserData() async {
@@ -93,6 +97,28 @@ class OrderData with ChangeNotifier {
     var snap = await FirebaseFirestore.instance.collection('Users').doc(user!.uid).get();
 
     print(snap.data());
+  }
+
+  // save order data
+  void saveOrderData(BuildContext context, String deliveryType) {
+    List cart = [];
+    Provider.of<AppData>(context, listen: false).carte.forEach(
+          (element) => cart.add(
+            {
+              "title": element.title,
+              "qty": element.qty
+            },
+          ),
+        );
+
+    Map<String, dynamic> tempOrderData = {
+      "name": "${_userData!.firstName} ${_userData!.lastName}",
+      "address": "${_userData!.address}, ${_userData!.wilaya}",
+      "order": cart,
+      "total": Provider.of<AppData>(context, listen: false).totalPrice,
+      "delivery_type": deliveryType
+    };
+    orderData = tempOrderData;
   }
 
   // make order

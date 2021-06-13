@@ -24,23 +24,6 @@ class ShoppingCarte extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FirebaseAuth.instance.currentUser != null
-          ? context.watch<AppData>().checkoutStep != 1
-              ? FloatingActionButton(
-                  child: Icon(Icons.arrow_forward),
-                  backgroundColor: kPrimaryColor,
-                  onPressed: () {
-                    context.read<AppData>().changeCheckoutStep();
-                  },
-                )
-              : null
-          : FloatingActionButton(
-              child: Icon(Icons.arrow_forward),
-              backgroundColor: kPrimaryColor,
-              onPressed: () {
-                context.read<AppData>().changeCheckoutStep();
-              },
-            ),
     );
   }
 }
