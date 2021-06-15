@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
+import 'package:pharmacy_app/views/drawer_views/contact_us.dart';
 import 'package:provider/provider.dart';
 
 class NavigationDrawer extends StatefulWidget {
@@ -69,24 +70,27 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     color: Colors.grey,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.chat,
-                        color: mainTeal,
-                        size: 35,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        "Contact Us",
-                        style: TextStyle(
-                          fontSize: 20,
+                GestureDetector(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.chat,
+                          color: mainTeal,
+                          size: 35,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10),
+                        Text(
+                          "Contact Us",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -96,24 +100,29 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     color: Colors.grey,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.location_pin,
-                        size: 35,
-                        color: mainTeal,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        "Location & Hours",
-                        style: TextStyle(
-                          fontSize: 20,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => LocationAndHours()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.location_pin,
+                          size: 35,
+                          color: mainTeal,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10),
+                        Text(
+                          "Location & Hours",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
