@@ -16,7 +16,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
 
   List<String> _deliveryTypes = [
     "Standard delivery",
-    "Home delivery",
+    "Fast delivery",
     "Deliver to another address"
   ];
 

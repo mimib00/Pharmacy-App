@@ -101,6 +101,18 @@ class OrderData with ChangeNotifier {
 
   // save order data
   void saveOrderData(BuildContext context, String deliveryType) {
+    double totalePrice = Provider.of<AppData>(context, listen: false).totalPrice;
+    switch (deliveryType) {
+      case "Standard delivery":
+        totalePrice += 500;
+        break;
+      case "Fast delivery":
+        totalePrice += 1000;
+        break;
+      case "Deliver to another address":
+        totalePrice += 500;
+        break;
+    }
     List cart = [];
     Provider.of<AppData>(context, listen: false).carte.forEach(
           (element) => cart.add(
@@ -115,12 +127,19 @@ class OrderData with ChangeNotifier {
       "name": "${_userData!.firstName} ${_userData!.lastName}",
       "address": "${_userData!.address}, ${_userData!.wilaya}",
       "order": cart,
-      "total": Provider.of<AppData>(context, listen: false).totalPrice,
+      "total": totalePrice,
       "delivery_type": deliveryType
     };
     orderData = tempOrderData;
   }
 
   // make order
-  void makeOrder() {}
+  void makeOrder(String payment) async {
+    var snap = await FirebaseFirestore.instance.collection('Orders').add({
+      "payment_type": payment,
+      ...orderData,
+    });
+
+    print(snap);
+  }
 }
