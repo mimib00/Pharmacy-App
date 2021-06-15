@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/drawer_views/contact_us.dart';
+import 'package:pharmacy_app/views/drawer_views/location_and_hours.dart';
 import 'package:provider/provider.dart';
 
 class NavigationDrawer extends StatefulWidget {
@@ -71,7 +72,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => ContactUs()));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: Row(

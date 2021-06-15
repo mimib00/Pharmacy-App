@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/utils/color.dart';
 
-class LocationAndHours extends StatelessWidget {
+class ContactUs extends StatelessWidget {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController _email = TextEditingController();
+  TextEditingController _phone = TextEditingController();
+  TextEditingController _message = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -11,99 +17,117 @@ class LocationAndHours extends StatelessWidget {
           backgroundColor: kPrimaryColor,
           elevation: 0,
         ),
-        body: Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              // Header
-              Container(
-                width: double.infinity,
-                color: kPrimaryColor,
-                padding: EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    Text(
-                      'LOCATION & HOURS',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
+        body: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                // Header
+                Container(
+                  width: double.infinity,
+                  color: kPrimaryColor,
+                  padding: EdgeInsets.only(top: 10),
+                  child: Column(
+                    children: [
+                      Text(
+                        'CONTACT US',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 26,
+                          letterSpacing: 7,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    SvgPicture.asset(
-                      'assets/images/location_photo.svg',
-                      fit: BoxFit.fill,
-                      height: 200,
-                    )
-                  ],
+                      Container(
+                        width: MediaQuery.of(context).size.width * .7,
+                        child: Text(
+                          'Have a question or just want to  say Hi?drop us a message',
+                          style: TextStyle(
+                            color: darkBlue,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      SvgPicture.asset(
+                        'assets/images/contact_us.svg',
+                        fit: BoxFit.fill,
+                        height: 200,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              // Body
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.location_pin,
-                            color: mainTeal,
-                            size: 30,
-                          ),
-                          SizedBox(width: 15),
-                          Text(
-                            'N18, Djendel',
-                            style: TextStyle(color: mainTeal, fontSize: 20, fontWeight: FontWeight.w500),
-                          )
-                        ],
+                // Body
+                Container(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      decoration: BoxDecoration(border: Border.all(color: kPrimaryColor, width: 2)),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              controller: _email,
+                              decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
+                                icon: Icon(
+                                  Icons.email,
+                                ),
+                                hintText: "Email",
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            TextFormField(
+                              controller: _message,
+                              decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
+                                icon: Icon(
+                                  Icons.phone,
+                                ),
+                                hintText: "Phone",
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            TextFormField(
+                              controller: _message,
+                              decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
+                                icon: Icon(
+                                  Icons.message_rounded,
+                                ),
+                                hintText: "Message",
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            SizedBox(height: 20),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: kPrimaryColor,
+                                borderRadius: BorderRadius.circular(45),
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.send),
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.phone,
-                            color: mainTeal,
-                            size: 30,
-                          ),
-                          SizedBox(width: 15),
-                          Text(
-                            '+213 27 54 10 46',
-                            style: TextStyle(color: mainTeal, fontSize: 20, fontWeight: FontWeight.w500),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.timer_rounded,
-                            color: mainTeal,
-                            size: 30,
-                          ),
-                          SizedBox(width: 15),
-                          Text(
-                            'Sun-Sat: 8:00AM - 12:00PM',
-                            style: TextStyle(color: mainTeal, fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 250,
-                      child: Image.asset('assets/images/location.png'),
-                    ),
-                  ],
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
