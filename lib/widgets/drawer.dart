@@ -6,6 +6,7 @@ import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/drawer_views/contact_us.dart';
 import 'package:pharmacy_app/views/drawer_views/location_and_hours.dart';
+import 'package:pharmacy_app/views/drawer_views/settings.dart';
 import 'package:provider/provider.dart';
 
 class NavigationDrawer extends StatefulWidget {
@@ -140,24 +141,29 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     color: Colors.grey,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.settings,
-                        size: 35,
-                        color: mainTeal,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        "Settings",
-                        style: TextStyle(
-                          fontSize: 20,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsPage()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.settings,
+                          size: 35,
+                          color: mainTeal,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10),
+                        Text(
+                          "Settings",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(

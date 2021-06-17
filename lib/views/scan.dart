@@ -31,6 +31,18 @@ class _PaperScanState extends State<PaperScan> {
     });
   }
 
+  Future pickImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +86,7 @@ class _PaperScanState extends State<PaperScan> {
               CustomButton1(
                 iconData: Icons.photo_library,
                 title: 'Picture Gallery',
-                onTap: () {},
+                onTap: pickImage,
               ),
             ],
           ),
