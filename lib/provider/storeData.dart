@@ -20,9 +20,10 @@ class StoreData with ChangeNotifier {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) => CategoryProducts(categoryName: element.data()['name'])));
           },
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(
               element.data()['name'],
+              style: TextStyle(fontSize: 18),
               textAlign: TextAlign.left,
             ),
           ),

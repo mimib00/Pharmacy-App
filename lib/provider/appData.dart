@@ -45,7 +45,9 @@ class AppData with ChangeNotifier {
   }
 
   void changeCheckoutStep([int index = -1]) {
-    if (_checkoutStep >= 3) {
+    print(_checkoutStep);
+
+    if (_checkoutStep > 3) {
       return;
     }
     if (index >= 0) {

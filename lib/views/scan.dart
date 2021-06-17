@@ -1,13 +1,35 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/widgets/comment_input.dart';
 import 'package:pharmacy_app/widgets/custom_button_1.dart';
 import 'package:pharmacy_app/widgets/custom_button_2.dart';
 import 'package:pharmacy_app/widgets/drawer.dart';
 
-class PaperScan extends StatelessWidget {
-  const PaperScan({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class PaperScan extends StatefulWidget {
+  @override
+  _PaperScanState createState() => _PaperScanState();
+}
+
+class _PaperScanState extends State<PaperScan> {
+  File? _image;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +69,12 @@ class PaperScan extends StatelessWidget {
               CustomButton1(
                 iconData: FontAwesomeIcons.camera,
                 title: 'Take Picture',
+                onTap: getImage,
               ),
               CustomButton1(
                 iconData: Icons.photo_library,
                 title: 'Picture Gallery',
+                onTap: () {},
               ),
             ],
           ),
@@ -59,10 +83,12 @@ class PaperScan extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1, vertical: 10),
               color: Colors.grey,
               child: Center(
-                child: Icon(
-                  Icons.no_photography_rounded,
-                  size: 50,
-                ),
+                child: _image == null
+                    ? Icon(
+                        Icons.no_photography_rounded,
+                        size: 50,
+                      )
+                    : Image.file(_image!),
               ),
             ),
           ),
@@ -101,3 +127,5 @@ class PaperScan extends StatelessWidget {
     );
   }
 }
+
+/**/

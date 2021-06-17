@@ -37,7 +37,7 @@ class ProductTile extends StatelessWidget {
             children: [
               Text(
                 title!,
-                style: TextStyle(fontSize: 18, color: kPrimaryColor, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 18, color: mainTeal, fontWeight: FontWeight.w500),
               ),
               Container(
                 width: 180,
@@ -50,12 +50,13 @@ class ProductTile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       price.toString() + " DA",
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: 15),
                     OutlinedButton(
                       child: Text(
                         'See The Product',
@@ -80,7 +81,7 @@ class ProductTile extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.add_shopping_cart_rounded,
-                        color: kPrimaryColor,
+                        color: mainTeal,
                         size: 30,
                       ),
                     )

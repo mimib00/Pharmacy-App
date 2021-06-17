@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/checkout_steps/step2_register.dart';
@@ -22,7 +23,12 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
   void loginClient() async {
     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email.text, password: _password.text);
 
-    if (userCredential.user != null) Provider.of<OrderData>(context, listen: false).setUser(userCredential.user!);
+    if (userCredential.user != null) {
+      Provider.of<OrderData>(context, listen: false).setUser(userCredential.user!);
+
+      context.read<AppData>().changeCheckoutStep(context.read<AppData>().checkoutStep + 1);
+      setState(() {});
+    }
 
     print("USER: ${Provider.of<OrderData>(context, listen: false).user!.uid}");
   }
@@ -68,7 +74,7 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
                           color: Colors.white,
                         ),
                         hintText: "Email",
-                        hintStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white54),
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
@@ -84,7 +90,7 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
                           color: Colors.white,
                         ),
                         hintText: "Password",
-                        hintStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white54),
                       ),
                       keyboardType: TextInputType.visiblePassword,
                     ),

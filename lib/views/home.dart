@@ -36,12 +36,15 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
               ),
-              Text(
-                'Welcome\nTo The\n Online Pharmacy',
-                style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: Text(
+                  'Welcome\nTo The\n Online Pharmacy',
+                  style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              SizedBox(height: 100),
+              SizedBox(height: 50),
               GestureDetector(
                 onTap: () {
                   context.read<AppData>().changePage(1);

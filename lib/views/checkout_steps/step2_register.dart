@@ -140,7 +140,7 @@ class _FirstPageState extends State<FirstPage> {
                         color: Colors.white,
                       ),
                       hintText: "First Name",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                   TextFormField(
@@ -153,7 +153,7 @@ class _FirstPageState extends State<FirstPage> {
                         color: Colors.white,
                       ),
                       hintText: "Last Name",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                   TextFormField(
@@ -166,7 +166,7 @@ class _FirstPageState extends State<FirstPage> {
                         color: Colors.white,
                       ),
                       hintText: "Email",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                   TextFormField(
@@ -179,7 +179,7 @@ class _FirstPageState extends State<FirstPage> {
                         color: Colors.white,
                       ),
                       hintText: "Phone",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                   TextFormField(
@@ -193,7 +193,7 @@ class _FirstPageState extends State<FirstPage> {
                         color: Colors.white,
                       ),
                       hintText: "Password",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                   TextFormField(
@@ -207,7 +207,7 @@ class _FirstPageState extends State<FirstPage> {
                         color: Colors.white,
                       ),
                       hintText: "Confirm Password",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                 ],
@@ -302,7 +302,7 @@ class _SecondPageState extends State<SecondPage> {
                         color: Colors.white,
                       ),
                       hintText: "Wilaya",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                   TextFormField(
@@ -315,7 +315,7 @@ class _SecondPageState extends State<SecondPage> {
                         color: Colors.white,
                       ),
                       hintText: "Address",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white54),
                     ),
                   ),
                 ],

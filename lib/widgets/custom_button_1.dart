@@ -4,8 +4,9 @@ import 'package:pharmacy_app/utils/color.dart';
 class CustomButton1 extends StatelessWidget {
   final IconData? iconData;
   final String? title;
+  final Function()? onTap;
 
-  const CustomButton1({this.iconData, this.title});
+  const CustomButton1({this.iconData, this.title, this.onTap});
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -14,7 +15,7 @@ class CustomButton1 extends StatelessWidget {
       minWidth: 0,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       height: 0,
-      onPressed: () {},
+      onPressed: onTap!,
       child: Container(
         height: 80,
         width: 150,

@@ -25,6 +25,11 @@ class OrderData with ChangeNotifier {
 
   Map<String, dynamic> orderData = {};
 
+  void restUser() {
+    _userData = null;
+    notifyListeners();
+  }
+
   // get user data after starting app if already logged in
   void getUserData() async {
     if (_user != null) {
@@ -135,6 +140,10 @@ class OrderData with ChangeNotifier {
 
   // make order
   void makeOrder(String payment) async {
+    print({
+      "payment_type": payment,
+      ...orderData,
+    });
     var snap = await FirebaseFirestore.instance.collection('Orders').add({
       "payment_type": payment,
       ...orderData,

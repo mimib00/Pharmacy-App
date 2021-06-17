@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/drawer_views/contact_us.dart';
@@ -16,11 +18,14 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
+      height: MediaQuery.of(context).size.height,
       child: Drawer(
         child: Container(
           color: Color(0xffDFE9EF),
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 15),
@@ -39,7 +44,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 GestureDetector(
                   onTap: () {},
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ExpansionTile(
                       expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
                       expandedAlignment: Alignment.centerLeft,
@@ -76,7 +81,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) => ContactUs()));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -136,7 +141,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -153,6 +158,39 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Divider(
+                    thickness: 2,
+                    color: Colors.grey,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                    Provider.of<OrderData>(context, listen: false).restUser();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          size: 35,
+                          color: mainTeal,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Logout",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
