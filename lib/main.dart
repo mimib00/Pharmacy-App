@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    print(FirebaseAuth.instance.currentUser);
     FirebaseAuth.instance.currentUser != null ? Provider.of<OrderData>(context, listen: false).setUser(FirebaseAuth.instance.currentUser!) : null;
     return MaterialApp(
       title: 'S-Pharmacy',
