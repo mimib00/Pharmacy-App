@@ -15,23 +15,6 @@ class _SearchPageState extends State<SearchPage> {
 
   var snapshot;
 
-  // Widget searchList() {
-  //   return snapshot != null
-  //       ? ListView.builder(
-  //           itemCount: snapshot!.docs.length,
-  //           itemBuilder: (context, index) {
-  //             return ProductTile(
-  //               title: snapshot!.docs[index].data()['title'],
-  //               imageUrl: snapshot!.docs[index].data()['imageUrl'],
-  //               description: snapshot!.docs[index].data()['description'],
-  //               price: snapshot!.docs[index].data()['price'],
-  //               inStock: snapshot!.docs[index].data()['inStock'],
-  //             );
-  //           },
-  //         )
-  //       : Container();
-  // }
-
   Widget searchList() {
     return snapshot != null
         ? ListView.builder(

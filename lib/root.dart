@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/provider/orderData.dart';
+import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/carte.dart';
 import 'package:pharmacy_app/views/home.dart';
 import 'package:pharmacy_app/views/profile.dart';
 import 'package:pharmacy_app/views/scan.dart';
 import 'package:pharmacy_app/views/search.dart';
+import 'package:pharmacy_app/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 
 class RootPage extends StatefulWidget {
@@ -28,13 +30,13 @@ class _RootPageState extends State<RootPage> {
       : [
           HomePage(),
           SearchPage(),
-          ProfilePage(),
           PaperScan(),
           ShoppingCarte()
         ];
   @override
   void initState() {
     super.initState();
+    Provider.of<StoreData>(context, listen: false).fetchCategories(context);
     Provider.of<OrderData>(context, listen: false).getUserData();
   }
 
@@ -43,6 +45,13 @@ class _RootPageState extends State<RootPage> {
     int screenIndex = context.watch<AppData>().pageIndex;
     return SafeArea(
       child: Scaffold(
+        drawer: NavigationDrawer(),
+        appBar: screenIndex != 1 && screenIndex != 2
+            ? AppBar(
+                backgroundColor: kPrimaryColor,
+                elevation: 0,
+              )
+            : null,
         body: screens[screenIndex],
         bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {

@@ -2,29 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/provider/appData.dart';
-import 'package:pharmacy_app/provider/storeData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/widgets/backgroundClipper.dart';
-import 'package:pharmacy_app/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<StoreData>(context, listen: false).fetchCategories(context);
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: NavigationDrawer(),
       body: Container(
         height: size.height,
         width: size.width,
@@ -32,12 +18,8 @@ class _HomePageState extends State<HomePage> {
           painter: BackgroundPaint(),
           child: Column(
             children: [
-              AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-              ),
               Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 60),
                 child: Text(
                   'Welcome\nTo The\n Online Pharmacy',
                   style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
