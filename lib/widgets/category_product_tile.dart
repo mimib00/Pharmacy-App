@@ -22,7 +22,7 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
@@ -33,19 +33,25 @@ class ProductTile extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
+          SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: TextStyle(fontSize: 18, color: mainTeal, fontWeight: FontWeight.w500),
+              Container(
+                width: MediaQuery.of(context).size.width * .65,
+                child: Text(
+                  title,
+                  style: TextStyle(fontSize: 18, color: mainTeal, fontWeight: FontWeight.w500),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               Container(
-                width: 180,
+                width: 250,
                 height: 50,
                 child: Text(
                   description,
                   softWrap: true,
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Container(

@@ -26,12 +26,15 @@ class _CategoryProductsState extends State<CategoryProducts> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text(widget.categoryName.toString()),
         elevation: 0,
         backgroundColor: kPrimaryColor,
       ),
       body: Container(
-        child: Column(
-          children: Provider.of<StoreData>(context).categoryProducts,
+        child: SingleChildScrollView(
+          child: Column(
+            children: Provider.of<StoreData>(context).categoryProducts,
+          ),
         ),
       ),
     );

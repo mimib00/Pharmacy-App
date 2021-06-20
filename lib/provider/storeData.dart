@@ -37,7 +37,7 @@ class StoreData with ChangeNotifier {
     var snap = await FirebaseFirestore.instance.collection("Products").where("category", isEqualTo: categoryName).get();
 
     snap.docs.forEach((doc) {
-      print(doc.data()['name']);
+      print(doc.data()['price']);
       _categoryProducts.add(
         ProductTile(
           title: doc.data()['name'],

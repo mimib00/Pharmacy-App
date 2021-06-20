@@ -46,7 +46,7 @@ class _RootPageState extends State<RootPage> {
     return SafeArea(
       child: Scaffold(
         drawer: NavigationDrawer(),
-        appBar: screenIndex != 1 && screenIndex != 2
+        appBar: screenIndex != 1
             ? AppBar(
                 backgroundColor: kPrimaryColor,
                 elevation: 0,
@@ -78,7 +78,7 @@ class _RootPageState extends State<RootPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.person,
+                FontAwesomeIcons.userAlt,
               ),
               label: '',
             ),

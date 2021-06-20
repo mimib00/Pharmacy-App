@@ -131,6 +131,7 @@ class _FirstPageState extends State<FirstPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _firstName,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -144,6 +145,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _lastName,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -157,6 +159,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _email,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -170,6 +173,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _phone,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -183,6 +187,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _password,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -197,6 +202,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _confirmPassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -293,6 +299,7 @@ class _SecondPageState extends State<SecondPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _wilaya,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -306,6 +313,7 @@ class _SecondPageState extends State<SecondPage> {
                     ),
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _address,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
@@ -371,6 +379,7 @@ class _SecondPageState extends State<SecondPage> {
             activeColor: Colors.white,
             direction: Axis.horizontal,
           ),
+          SizedBox(height: 15),
           Row(
             children: [
               Checkbox(
