@@ -3,14 +3,15 @@ import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ProductTile extends StatelessWidget {
-  final String? title;
-  final String? imageUrl;
-  final String? description;
-  final double? price;
-  final bool? inStock;
+  String title;
+  String imageUrl;
+  String description;
+  double price;
+  bool inStock;
 
-  const ProductTile({
+  ProductTile({
     required this.title,
     required this.imageUrl,
     required this.description,
@@ -28,7 +29,7 @@ class ProductTile extends StatelessWidget {
           Container(
             width: 120,
             child: Image.network(
-              imageUrl!,
+              imageUrl,
               fit: BoxFit.fill,
             ),
           ),
@@ -36,30 +37,31 @@ class ProductTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title!,
+                title,
                 style: TextStyle(fontSize: 18, color: mainTeal, fontWeight: FontWeight.w500),
               ),
               Container(
                 width: 180,
                 height: 50,
                 child: Text(
-                  description!,
+                  description,
                   softWrap: true,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.65,
+                padding: const EdgeInsets.only(top: 10, left: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       price.toString() + " DA",
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    SizedBox(width: 15),
+                    Spacer(),
                     OutlinedButton(
                       child: Text(
-                        'See The Product',
+                        'See More',
                         style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
                       ),
                       style: OutlinedButton.styleFrom(

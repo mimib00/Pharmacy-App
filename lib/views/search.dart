@@ -1,10 +1,61 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/utils/color.dart';
+import 'package:pharmacy_app/widgets/category_product_tile.dart';
 import 'package:pharmacy_app/widgets/custom_search_input.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
+  @override
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   final TextEditingController _controller = TextEditingController();
+
+  var snapshot;
+
+  // Widget searchList() {
+  //   return snapshot != null
+  //       ? ListView.builder(
+  //           itemCount: snapshot!.docs.length,
+  //           itemBuilder: (context, index) {
+  //             return ProductTile(
+  //               title: snapshot!.docs[index].data()['title'],
+  //               imageUrl: snapshot!.docs[index].data()['imageUrl'],
+  //               description: snapshot!.docs[index].data()['description'],
+  //               price: snapshot!.docs[index].data()['price'],
+  //               inStock: snapshot!.docs[index].data()['inStock'],
+  //             );
+  //           },
+  //         )
+  //       : Container();
+  // }
+
+  Widget searchList() {
+    return snapshot != null
+        ? ListView.builder(
+            itemCount: snapshot!.docs.length,
+            itemBuilder: (context, index) {
+              return ProductTile(
+                title: snapshot!.docs[index].data()['name'],
+                imageUrl: snapshot!.docs[index].data()['imageUrl'],
+                description: snapshot!.docs[index].data()['description'],
+                price: double.parse(snapshot!.docs[index].data()['price'].toString()),
+                inStock: snapshot!.docs[index].data()['inStock'],
+              );
+            },
+          )
+        : Container();
+  }
+
+  initSearch() async {
+    var tempSnap = await FirebaseFirestore.instance.collection("Products").where("name", isEqualTo: _controller.text.trim()).get();
+    print("DATA: ${tempSnap.docs[0].data()}");
+    setState(() {
+      snapshot = tempSnap;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +81,7 @@ class SearchPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 10),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: initSearch,
                       icon: FaIcon(
                         FontAwesomeIcons.search,
                         size: 35,
@@ -42,6 +93,7 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
+          Expanded(child: searchList())
         ],
       ),
     );
