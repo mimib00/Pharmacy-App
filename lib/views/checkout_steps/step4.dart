@@ -143,7 +143,7 @@ class _OrderStepState extends State<OrderStep> {
                   onTap: () {
                     Provider.of<OrderData>(context, listen: false).makeOrder(_payment);
                   },
-                  title: 'Order',
+                  title: 'ORDER',
                 ),
               ),
             ],

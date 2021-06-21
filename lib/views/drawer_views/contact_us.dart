@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharmacy_app/utils/color.dart';
+import 'package:pharmacy_app/widgets/custom_button_2.dart';
 
 // ignore: must_be_immutable
 class ContactUs extends StatelessWidget {
@@ -20,7 +21,7 @@ class ContactUs extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height * .85,
             child: Column(
               children: [
                 // Header
@@ -62,72 +63,63 @@ class ContactUs extends StatelessWidget {
                 // Body
                 Container(
                   width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 50, top: 50, right: 50),
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      decoration: BoxDecoration(border: Border.all(color: kPrimaryColor, width: 2)),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              controller: _email,
-                              decoration: InputDecoration(
-                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
-                                icon: Icon(
-                                  Icons.email,
-                                ),
-                                hintText: "Email",
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 30, top: 30, right: 30),
+                    padding: EdgeInsets.only(left: 30, top: 30, right: 30, bottom: 50),
+                    decoration: BoxDecoration(border: Border.all(color: kPrimaryColor, width: 2)),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: _email,
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
+                              icon: Icon(
+                                Icons.email,
                               ),
-                              keyboardType: TextInputType.emailAddress,
+                              hintText: "Email",
                             ),
-                            TextFormField(
-                              controller: _phone,
-                              decoration: InputDecoration(
-                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
-                                icon: Icon(
-                                  Icons.phone,
-                                ),
-                                hintText: "Phone",
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          TextFormField(
+                            controller: _phone,
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
+                              icon: Icon(
+                                Icons.phone,
                               ),
-                              keyboardType: TextInputType.emailAddress,
+                              hintText: "Phone",
                             ),
-                            TextFormField(
-                              controller: _message,
-                              decoration: InputDecoration(
-                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
-                                icon: Icon(
-                                  Icons.message_rounded,
-                                ),
-                                hintText: "Message",
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          TextFormField(
+                            controller: _message,
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mainTeal, width: 3)),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 3)),
+                              icon: Icon(
+                                Icons.message_rounded,
                               ),
-                              keyboardType: TextInputType.emailAddress,
+                              hintText: "Message",
                             ),
-                          ],
-                        ),
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(45),
+                SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 120),
+                  child: CustomButton2(
+                    onTap: () {},
+                    title: 'SEND',
                   ),
-                  child: IconButton(
-                    iconSize: 40,
-                    onPressed: () {},
-                    icon: Icon(Icons.send),
-                    color: Colors.white,
-                  ),
-                )
+                ),
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pharmacy_app/widgets/cart_medcine_tile.dart';
 
@@ -28,6 +29,7 @@ class AppData with ChangeNotifier {
         price: productData['price'],
       ),
     );
+    notifyListeners();
   }
 
   void nextRegisterPage() {
@@ -40,7 +42,12 @@ class AppData with ChangeNotifier {
   }
 
   void changePage(int index) {
-    _pageIndex = index;
+    print(index);
+    if (FirebaseAuth.instance.currentUser != null) {
+      _pageIndex = index;
+    } else {
+      _pageIndex = index;
+    }
     notifyListeners();
   }
 

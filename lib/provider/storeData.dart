@@ -41,9 +41,9 @@ class StoreData with ChangeNotifier {
       _categoryProducts.add(
         ProductTile(
           title: doc.data()['name'],
-          imageUrl: doc.data()['imageUrl'],
+          imageUrl: doc.data()['imageUrl'] != null ? doc.data()['imageUrl'] : '',
           description: doc.data()['description'],
-          price: double.parse(doc.data()['price'].toString()),
+          price: doc.data()['price'] != null ? double.parse(doc.data()['price'].toString()) : 0.0,
           inStock: doc.data()['inStock'],
         ),
       );

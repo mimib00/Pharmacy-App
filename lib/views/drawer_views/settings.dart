@@ -88,7 +88,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       'Language',
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
-                    Icon(Icons.arrow_forward_ios)
+                    Text(
+                      'English',
+                      style: TextStyle(color: mainTeal, fontSize: 20, fontWeight: FontWeight.w400),
+                    ),
                   ],
                 ),
               ),
@@ -102,7 +105,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       'Country',
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
-                    Icon(Icons.arrow_forward_ios)
+                    Text(
+                      'Algeria',
+                      style: TextStyle(color: mainTeal, fontSize: 20, fontWeight: FontWeight.w400),
+                    ),
                   ],
                 ),
               ),

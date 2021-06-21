@@ -50,28 +50,28 @@ class _DeliveryStepState extends State<DeliveryStep> {
                   padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                   child: Text(
                     "${Provider.of<OrderData>(context).userData!.firstName} ${Provider.of<OrderData>(context).userData!.lastName}",
-                    style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: darkBlue, fontSize: 20),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     "${Provider.of<OrderData>(context).userData!.address}",
-                    style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: darkBlue, fontSize: 20),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     "${Provider.of<OrderData>(context).userData!.wilaya}",
-                    style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: darkBlue, fontSize: 20),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     "${Provider.of<OrderData>(context).userData!.phone}",
-                    style: TextStyle(color: darkBlue, fontSize: 20, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: darkBlue, fontSize: 20),
                   ),
                 ),
                 Divider(
@@ -81,7 +81,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Text(
                     'DELIVERY METHOD',
-                    style: TextStyle(color: mainTeal, fontSize: 18, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: darkBlue, fontSize: 20),
                   ),
                 ),
                 RadioGroup<String>.builder(
@@ -102,7 +102,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
                     children: [
                       Text(
                         'Subtotal',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20),
                       ),
                       Text(
                         "${context.read<AppData>().totalPrice} DA",
@@ -118,7 +118,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
                     children: [
                       Text(
                         'Delivery fee',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20),
                       ),
                       Text(
                         "500 DA",
@@ -137,7 +137,7 @@ class _DeliveryStepState extends State<DeliveryStep> {
                     children: [
                       Text(
                         'Total',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20),
                       ),
                       Text(
                         "${context.read<AppData>().totalPrice + 500} DA",

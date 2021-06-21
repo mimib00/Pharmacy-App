@@ -98,7 +98,12 @@ class LocationAndHours extends StatelessWidget {
                     ),
                     Container(
                       height: 250,
-                      child: Image.asset('assets/images/location.png'),
+                      child: Image.asset(
+                        'assets/images/location.png',
+                        fit: BoxFit.fill,
+                        width: 300,
+                        // height: 300,
+                      ),
                     ),
                   ],
                 ),

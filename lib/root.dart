@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharmacy_app/provider/appData.dart';
@@ -19,25 +18,35 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  List<Widget> screens = FirebaseAuth.instance.currentUser != null
-      ? [
-          HomePage(),
-          SearchPage(),
-          ProfilePage(),
-          PaperScan(),
-          ShoppingCarte()
-        ]
-      : [
-          HomePage(),
-          SearchPage(),
-          PaperScan(),
-          ShoppingCarte()
-        ];
+  List<Widget> screens = [
+    HomePage(),
+    SearchPage(),
+    ProfilePage(),
+    PaperScan(),
+    ShoppingCarte()
+  ];
+
+//         List navBarItems (){
+
+//   if(your condition X){
+
+//     return ["item1","item2","item3"];
+//   }else{
+//     return ["item1","item2"];
+//   }
+
+// }
+
   @override
   void initState() {
     super.initState();
     Provider.of<StoreData>(context, listen: false).fetchCategories(context);
     Provider.of<OrderData>(context, listen: false).getUserData();
+    updateList();
+  }
+
+  void updateList() {
+    setState(() {});
   }
 
   @override
@@ -54,48 +63,51 @@ class _RootPageState extends State<RootPage> {
             : null,
         body: screens[screenIndex],
         bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            context.read<AppData>().changePage(index);
-          },
-          type: BottomNavigationBarType.fixed,
-          unselectedIconTheme: IconThemeData(color: Colors.grey, size: 30),
-          selectedIconTheme: IconThemeData(color: kGreenColor, size: 30),
-          currentIndex: screenIndex,
-          unselectedFontSize: 0,
-          selectedFontSize: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.home,
+            onTap: (index) {
+              if (Provider.of<OrderData>(context, listen: false).userData == null && index == 2) {
+                return;
+              }
+              context.read<AppData>().changePage(index);
+              setState(() {});
+            },
+            type: BottomNavigationBarType.fixed,
+            unselectedIconTheme: IconThemeData(color: Colors.grey, size: 30),
+            selectedIconTheme: IconThemeData(color: kGreenColor, size: 30),
+            currentIndex: screenIndex,
+            unselectedFontSize: 0,
+            selectedFontSize: 0,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.home,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.search,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.search,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.userAlt,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.userAlt,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.solidStickyNote,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.solidStickyNote,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.shoppingCart,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.shoppingCart,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-          ],
-        ),
+            ]),
       ),
     );
   }
