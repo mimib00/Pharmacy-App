@@ -71,7 +71,11 @@ class _CartMedcineTileState extends State<CartMedcineTile> {
               children: [
                 //Like Button
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.isFavorite = !widget.isFavorite;
+                    });
+                  },
                   icon: Icon(
                     widget.isFavorite ? Icons.favorite : Icons.favorite_outline,
                     size: 30,

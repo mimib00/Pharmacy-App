@@ -101,28 +101,31 @@ class _FirstPageState extends State<FirstPage> {
             ),
           ),
           SizedBox(height: 50),
-          Row(
-            children: [
-              Text(
-                'Gender:',
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 3),
-              ),
-              RadioGroup<String>.builder(
-                groupValue: _verticalGroupValue,
-                onChanged: (value) {
-                  setState(
-                    () => _verticalGroupValue = value!,
-                  );
-                  print(_verticalGroupValue);
-                },
-                items: _status,
-                itemBuilder: (item) => RadioButtonBuilder(
-                  item,
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: [
+                Text(
+                  'Gender:',
+                  style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 3),
                 ),
-                activeColor: Colors.white,
-                direction: Axis.horizontal,
-              ),
-            ],
+                RadioGroup<String>.builder(
+                  groupValue: _verticalGroupValue,
+                  onChanged: (value) {
+                    setState(
+                      () => _verticalGroupValue = value!,
+                    );
+                    print(_verticalGroupValue);
+                  },
+                  items: _status,
+                  itemBuilder: (item) => RadioButtonBuilder(
+                    item,
+                  ),
+                  activeColor: Colors.white,
+                  direction: Axis.horizontal,
+                ),
+              ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 50),
