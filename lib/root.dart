@@ -30,7 +30,6 @@ class _RootPageState extends State<RootPage> {
   void initState() {
     super.initState();
     Provider.of<StoreData>(context, listen: false).fetchCategories(context);
-    Provider.of<OrderData>(context, listen: false).getUserData();
     updateList();
   }
 

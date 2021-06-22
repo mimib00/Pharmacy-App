@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(
     MultiProvider(
       providers: [
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    Provider.of<OrderData>(context, listen: false).getUserData();
     FirebaseAuth.instance.currentUser != null ? Provider.of<OrderData>(context, listen: false).setUser(FirebaseAuth.instance.currentUser!) : null;
     return MaterialApp(
       title: 'S-Pharmacy',
