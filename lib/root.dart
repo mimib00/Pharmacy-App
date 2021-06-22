@@ -26,17 +26,6 @@ class _RootPageState extends State<RootPage> {
     ShoppingCarte()
   ];
 
-//         List navBarItems (){
-
-//   if(your condition X){
-
-//     return ["item1","item2","item3"];
-//   }else{
-//     return ["item1","item2"];
-//   }
-
-// }
-
   @override
   void initState() {
     super.initState();
@@ -64,6 +53,7 @@ class _RootPageState extends State<RootPage> {
         body: screens[screenIndex],
         bottomNavigationBar: BottomNavigationBar(
             onTap: (index) {
+              print("INDEX: $index");
               if (Provider.of<OrderData>(context, listen: false).userData == null && index == 2) {
                 return;
               }

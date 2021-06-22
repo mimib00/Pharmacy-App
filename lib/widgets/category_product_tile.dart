@@ -75,7 +75,9 @@ class ProductTile extends StatelessWidget {
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: kPrimaryColor, width: 2),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            print("clicked");
+                          },
                         ),
                         IconButton(
                           onPressed: () {

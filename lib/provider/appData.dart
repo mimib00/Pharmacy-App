@@ -18,6 +18,11 @@ class AppData with ChangeNotifier {
   double _totalPrice = 0;
   double get totalPrice => _totalPrice;
 
+  void removeFromCart(String? title) {
+    carte.removeWhere((element) => element.title == title);
+    notifyListeners();
+  }
+
   void addToCart(Map<String, dynamic> productData) {
     print(productData['title']);
     _carte.add(
@@ -42,26 +47,25 @@ class AppData with ChangeNotifier {
   }
 
   void changePage(int index) {
-    print(index);
-    if (FirebaseAuth.instance.currentUser != null) {
-      _pageIndex = index;
-    } else {
-      _pageIndex = index;
-    }
+    _pageIndex = index;
+
     notifyListeners();
   }
 
   void changeCheckoutStep([int index = -1]) {
-    print(_checkoutStep);
-
-    if (_checkoutStep > 3) {
-      return;
-    }
+    print(index);
+    print(FirebaseAuth.instance.currentUser != null && index == 1);
     if (index >= 0) {
+      if (FirebaseAuth.instance.currentUser != null && index == 1) {
+        _checkoutStep = 2;
+        notifyListeners();
+        return;
+      }
       _checkoutStep = index;
       notifyListeners();
       return;
     }
+
     _checkoutStep += 1;
     notifyListeners();
   }

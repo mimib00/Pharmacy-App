@@ -83,7 +83,9 @@ class _CartMedcineTileState extends State<CartMedcineTile> {
                 ),
                 //Remove button
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<AppData>().removeFromCart(widget.title!);
+                  },
                   child: Row(
                     children: [
                       Icon(FontAwesomeIcons.trash),
@@ -98,6 +100,7 @@ class _CartMedcineTileState extends State<CartMedcineTile> {
 
                 Spacer(),
                 //In Stock?
+                // 1 == 1 ? true:false;
                 widget.inStock
                     ? Text(
                         "In Stock",

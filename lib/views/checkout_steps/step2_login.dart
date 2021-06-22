@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pharmacy_app/provider/appData.dart';
 import 'package:pharmacy_app/provider/orderData.dart';
 import 'package:pharmacy_app/utils/color.dart';
 import 'package:pharmacy_app/views/checkout_steps/step2_register.dart';
@@ -24,9 +25,8 @@ class _AuthenticationStepState extends State<AuthenticationStep> {
 
     if (userCredential.user != null) {
       Provider.of<OrderData>(context, listen: false).setUser(userCredential.user!);
-      Provider.of<OrderData>(context).getUserData();
-      // context.read<AppData>().changeCheckoutStep(context.read<AppData>().checkoutStep + 1);
-      setState(() {});
+      await Provider.of<OrderData>(context, listen: false).getUserData();
+      context.read<AppData>().changeCheckoutStep(context.read<AppData>().checkoutStep + 1);
     }
 
     print("USER: ${Provider.of<OrderData>(context, listen: false).user!.uid}");

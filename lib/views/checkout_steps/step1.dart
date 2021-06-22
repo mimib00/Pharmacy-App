@@ -53,7 +53,7 @@ class _CarteStepState extends State<CarteStep> {
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        context.read<AppData>().totalPrice.toString(),
+                        context.watch<AppData>().totalPrice.toString(),
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       )
                     ],

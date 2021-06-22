@@ -15,18 +15,12 @@ class Checkout extends StatefulWidget {
 }
 
 class _CheckoutState extends State<Checkout> {
-  List<Widget> pages = FirebaseAuth.instance.currentUser != null
-      ? [
-          CarteStep(),
-          DeliveryStep(),
-          OrderStep(),
-        ]
-      : [
-          CarteStep(),
-          AuthenticationStep(),
-          DeliveryStep(),
-          OrderStep(),
-        ];
+  List<Widget> pages = [
+    CarteStep(),
+    AuthenticationStep(),
+    DeliveryStep(),
+    OrderStep(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,7 +32,7 @@ class _CheckoutState extends State<Checkout> {
           color: kPrimaryColor,
           child: StepProgressIndicator(
             onTap: (index) => () => context.read<AppData>().changeCheckoutStep(index),
-            totalSteps: FirebaseAuth.instance.currentUser != null ? 3 : 4,
+            totalSteps: 4,
             currentStep: context.watch<AppData>().checkoutStep + 1,
             size: 50,
             selectedColor: mainTeal,

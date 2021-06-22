@@ -31,12 +31,14 @@ class OrderData with ChangeNotifier {
   }
 
   // get user data after starting app if already logged in
-  void getUserData() async {
+  Future<void> getUserData() async {
     if (_user != null) {
       var snap = await FirebaseFirestore.instance.collection('Users').doc(_user!.uid).get();
 
       _userData = UserData.fromMap(snap.data()!);
     }
+
+    notifyListeners();
   }
 
   void setUser(User user) {

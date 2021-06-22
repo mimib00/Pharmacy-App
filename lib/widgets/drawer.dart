@@ -9,12 +9,7 @@ import 'package:pharmacy_app/views/drawer_views/location_and_hours.dart';
 import 'package:pharmacy_app/views/drawer_views/settings.dart';
 import 'package:provider/provider.dart';
 
-class NavigationDrawer extends StatefulWidget {
-  @override
-  _NavigationDrawerState createState() => _NavigationDrawerState();
-}
-
-class _NavigationDrawerState extends State<NavigationDrawer> {
+class NavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,31 +37,28 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     color: Colors.grey,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: ExpansionTile(
-                      expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
-                      expandedAlignment: Alignment.centerLeft,
-                      children: Provider.of<StoreData>(context).categories,
-                      title: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.clipboardList,
-                            size: 35,
-                            color: mainTeal,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: ExpansionTile(
+                    expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+                    expandedAlignment: Alignment.centerLeft,
+                    children: Provider.of<StoreData>(context).categories,
+                    title: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.clipboardList,
+                          size: 35,
+                          color: mainTeal,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Categories",
+                          style: TextStyle(
+                            fontSize: 20,
                           ),
-                          SizedBox(width: 10),
-                          Text(
-                            "Categories",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

@@ -21,14 +21,6 @@ class _DeliveryStepState extends State<DeliveryStep> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    Provider.of<OrderData>(context, listen: false).getUserData();
-
-    print(Provider.of<OrderData>(context, listen: false).userData != null ? Provider.of<OrderData>(context, listen: false).userData!.firstName : null);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,

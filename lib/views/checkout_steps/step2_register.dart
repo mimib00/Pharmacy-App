@@ -266,7 +266,8 @@ class _SecondPageState extends State<SecondPage> {
       var status = await Provider.of<OrderData>(context, listen: false).registerUser(context);
       if (status) {
         Navigator.pop(context);
-        Provider.of<AppData>(context).changeCheckoutStep();
+        Provider.of<OrderData>(context, listen: false).getUserData();
+        Provider.of<AppData>(context, listen: false).changeCheckoutStep();
       }
     }
   }
