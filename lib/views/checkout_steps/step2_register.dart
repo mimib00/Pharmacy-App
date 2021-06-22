@@ -66,11 +66,11 @@ class _FirstPageState extends State<FirstPage> {
   void nextPage() {
     if (_password.text == _confirmPassword.text) {
       Map<String, dynamic> data = {
-        "first_name": _firstName.text,
-        "last_name": _lastName.text,
-        "email": _email.text,
-        "phone": _phone.text,
-        "password": _password.text,
+        "first_name": _firstName.text.trim(),
+        "last_name": _lastName.text.trim(),
+        "email": _email.text.trim(),
+        "phone": _phone.text.trim(),
+        "password": _password.text.trim(),
         "gender": _verticalGroupValue,
       };
 
